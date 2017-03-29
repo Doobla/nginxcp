@@ -157,7 +157,7 @@ else:
 
 srcpath=currentdir
 print srcpath
-nsrcpath = currentdir + "/nginx-1.9.14"
+nsrcpath = currentdir + "/nginx-1.11.12"
 ssrcpath = currentdir + "/setuptools-5.7"
 
 apache_version = findapacheversion()
