@@ -32,7 +32,6 @@ BEGIN {
    push(@INC,"/usr/local/cpanel/whostmgr/docroot/cgi");
 }
 
-use whmlib;
 require 'parseform.pl';
 
 Whostmgr::ACLS::init_acls();
