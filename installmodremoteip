@@ -3,8 +3,23 @@
 # Website: www.nginxcp.com
 #
 # Copyright (C) NGINXCP.COM.
-# 
 
+# Check for EA4
+if [ -f /etc/apache2/conf/httpd.conf ]; then
+        yum -y install ea-apache24-mod_remoteip
+
+REMOTEIPCONF=/etc/apache2/conf.modules.d/$(ls /etc/apache2/conf.modules.d/|grep mod_remoteip) 
+LIST=$(/scripts/ipusage | awk '{print $1}' | while read ip; do echo -ne "RemoteIPInternalProxy ${ip}\n"; done)
+if [ -f $REMOTEIPCONF ]; then
+
+                cat > $REMOTEIPCONF <<EOF
+LoadModule remoteip_module modules/mod_remoteip.so
+#Mod_remoteip settings
+RemoteIPHeader X-Real-IP
+RemoteIPInternalProxy 127.0.0.1 $LIST
+EOF
+fi
+else
 apache_version=`/usr/sbin/httpd -V 2>&1 | sed -n 's/.*Apache\/\(2\.[0-9]*\.[0-9]*\).*/\1/p'`
 
 remoteip_path="/home/cpeasyapache/src/httpd-2.4/modules/metadata"
@@ -45,3 +60,4 @@ EOF
 fi
 
 /etc/init.d/httpd restart
+fi
