@@ -1,2 +1,3 @@
 #!/bin/sh -e
-/etc/init.d/httpd restart
+/scripts/restartsrv_httpd
+service nginx restart

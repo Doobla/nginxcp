@@ -25,7 +25,7 @@ $user = getenv('REMOTE_USER');
 if($user != "root") { echo "You do not have the proper permissions to access Nginx Admin..."; exit; }
 function ejecutar($act) {
 if($act == "restart") {
-$var = shell_exec("/etc/init.d/httpd restart");
+$var = shell_exec("/scripts/nginx_restart");
 if(empty($var)) { echo "<p>Nginx Restarted Successfully.</p>"; } else { echo "<p>{$var}</p>"; }
 } elseif($act == "rebuild") {
 $var = shell_exec("/scripts/rebuildvhosts");
