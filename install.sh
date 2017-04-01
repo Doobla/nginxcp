@@ -4,8 +4,8 @@
 # Check for EasyApache version
 if [ -f /etc/apache2/conf/httpd.conf ]; then
 # Go ahead with EA4 installer
- 		chmod +x install.sh
- 		./install.sh
+ 		chmod +x ea4
+		./ea4
 
 else
 # Go ahead with EA3 installer
